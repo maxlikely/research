@@ -122,10 +122,11 @@ def process_directory(path_to_xml='.'):
         try:
 
             sp = StanfordParser(open(filename).read())
-            parses.append({'tokens': sp.parse_tokens(),
+            parses.append({'filename': filename,
+                           'tokens': sp.parse_tokens(),
                            'parsetrees': sp.parse_parsetrees(),
-                           'coreferences': sp.parse_dependencies(),
-                           'dependencies': sp.parse_coreferences()})
+                           'dependencies': sp.parse_dependencies(),
+                           'coreferences': sp.parse_coreferences()})
 
         except:
 
