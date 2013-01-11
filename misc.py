@@ -1,3 +1,5 @@
+import random
+
 def pair_generator(conditions):
     '''
     Generates all pairs of a list
@@ -5,4 +7,16 @@ def pair_generator(conditions):
     for condition1 in conditions:
         for condition2 in conditions:
             yield (condition1, condition2)
+
+
+def kfolds(n, k):
+    '''
+    Returns k (train_idx, test_idx) pairs dividing n up k times.
+    '''
+    idx = range(n)
+    random.shuffle(idx)
+
+    for x in xrange(0, n, n / k):
+        yield (idx[x:x+k], idx[x+k:] + idx[:x])
+
 
