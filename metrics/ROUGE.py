@@ -1,11 +1,7 @@
+
 import numpy as np
 from collections import Counter
-
-def get_ngrams(tokens, n=1):
-    '''
-    Returns all the n-grams of a sequence of tokens.
-    '''
-    return [tuple(tokens[i:i+n]) for i in xrange(len(tokens) - n + 1)]
+from research.misc import get_ngrams
 
 def rouge_n(machine_summary, reference_summaries, n=1):
     '''
@@ -34,3 +30,4 @@ def rouge2(machine_summary, reference_summaries):
     '''
 
     return rouge_n(machine_summary, reference_summaries, n=2)
+

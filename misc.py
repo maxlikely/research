@@ -20,3 +20,8 @@ def kfolds(n, k):
         yield (idx[x:x+k], idx[x+k:] + idx[:x])
 
 
+def get_ngrams(tokens, n=1):
+    '''
+    Returns all the n-grams of a sequence of tokens.
+    '''
+    return [tuple(tokens[i:i+n]) for i in xrange(len(tokens) - n + 1)]
