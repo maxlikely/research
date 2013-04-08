@@ -1,4 +1,6 @@
 import random
+import numpy as np
+from matplotlib import pyplot as plt
 
 def pair_generator(conditions):
     '''
@@ -80,3 +82,25 @@ def plot_confusion_matrix(conf, normalize=True):
     yticks(arange(len(labels)), labels)
     ylabel('true', rotation=90)
     xlabel('predictions')
+
+def pretty_plot(x, y, xlabel='', ylabel='', title='', xticks=None, scatter_fn=None):
+    '''
+    Pretty plot a list.
+
+    scatter_fn -- function to select a single point to highlight
+        e.g., `scatter_fn=np.max` will highlight the max point of a curve
+
+    '''
+    plt.figsize( 12, 4 )
+    plt.grid(b=True, which='major', linestyle='--')
+    plt.plot( x, y, color = "#348ABD", lw = 3 )
+    plt.fill_between( x, y, alpha = .2, facecolor = ["#348ABD"])
+    if scatter_fn:
+        plt.scatter( np.argmax(scatter_fn(y)), scatter_fn(y), s = 140, c ="#348ABD"  )
+    plt.xlim(np.min(x)-.5, np.max(x)+.5)
+    plt.ylim(np.min(y)-.5, max(y)+.5)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if xticks:
+        plt.xticks(x, xticks)
+    plt.title(title);
