@@ -83,7 +83,7 @@ def plot_confusion_matrix(conf, normalize=True):
     ylabel('true', rotation=90)
     xlabel('predictions')
 
-def pretty_plot(x, y, xlabel='', ylabel='', title='', xticks=None, scatter_fn=None):
+def pretty_plot(x, y, xlabel='', ylabel='', title='', xticks=None):
     '''
     Pretty plot a list.
 
@@ -95,12 +95,11 @@ def pretty_plot(x, y, xlabel='', ylabel='', title='', xticks=None, scatter_fn=No
     plt.grid(b=True, which='major', linestyle='--')
     plt.plot( x, y, color = "#348ABD", lw = 3 )
     plt.fill_between( x, y, alpha = .2, facecolor = ["#348ABD"])
-    if scatter_fn:
-        plt.scatter( np.argmax(scatter_fn(y)), scatter_fn(y), s = 140, c ="#348ABD"  )
+    plt.scatter( np.argmax(y), np.max(y), s = 140, c ="#348ABD"  )
     plt.xlim(np.min(x)-.5, np.max(x)+.5)
     plt.ylim(np.min(y)-.5, max(y)+.5)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     if xticks:
-        plt.xticks(x, xticks)
+        plt.xticks(x, xticks, rotation=90)
     plt.title(title);
