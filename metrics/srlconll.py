@@ -43,6 +43,10 @@ def evaluate(y_true, y_pred, print_tex=True):
     precision, recall, and F1
     '''
 
+    # convert to lists from numpy arrays
+    y_true = y_true if isinstance(y_true, list) else y_true.tolist()
+    y_pred = y_pred if isinstance(y_pred, list) else y_pred.tolist()
+
     # initialize E to zero...
     E = {'op': 0, 'ok':0, 'ms':0, 'T':{}}
     for y in set(y_true+y_pred):
@@ -55,9 +59,10 @@ def evaluate(y_true, y_pred, print_tex=True):
             E['T'][t]['ok'] += 1
         else:
             E['op'] += 1
+            E['T'][p]['op'] += 1
+
             E['ms'] += 1
             E['T'][t]['ms'] += 1
-            E['T'][p]['op'] += 1
 
     if print_tex:
         _print_latex(E)

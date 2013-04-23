@@ -91,7 +91,7 @@ def pretty_plot(x, y, xlabel='', ylabel='', title='', xticks=None):
         e.g., `scatter_fn=np.max` will highlight the max point of a curve
 
     '''
-    plt.figsize( 12, 4 )
+    plt.figsize( 24, 18 )
     plt.grid(b=True, which='major', linestyle='--')
     plt.plot( x, y, color = "#348ABD", lw = 3 )
     plt.fill_between( x, y, alpha = .2, facecolor = ["#348ABD"])
