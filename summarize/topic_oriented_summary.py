@@ -2,7 +2,6 @@
 
 import numpy as np
 def p_qs(term, topic, signature):
-
     '''
     Returns the approximate oracle score for a given term and topic.
     Based on
@@ -40,11 +39,15 @@ def score_sentences(topic, signature, sentences):
 
     return scores
 
-
 def summarize(topic, signature, sentences, summary_length=250, raw_sentences=[]):
-    '''
-    Generates an extractive summary for an input topic (query), it's associated
-    topic signature, and a set of sentenceuments (extraction units) to pull from. An
+    '''Generates an extractive summary for an input query.
+
+    Params:
+    topic -- the query to 
+    
+
+    it's associated
+    topic signature, and a set of sentence (extraction units) to pull from. An
     optional parameter, summary_length, specifies the minimum # of words for
     the generated summary. Another optional parameter specifies raw sentences
     to use when reconstructing the summary.
@@ -71,7 +74,6 @@ def summarize(topic, signature, sentences, summary_length=250, raw_sentences=[])
 
 ## JUST FOR DATA EXPLORATION
 def p_qs_indiv(term, topic, signature):
-
     '''
     Returns the approximate oracle score for a given term and topic.
     Based on

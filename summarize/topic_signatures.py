@@ -74,11 +74,10 @@ def term_weights(relevant, non_relevant, threshold=10):
     return sorted(signature, key=lambda (term, w): -w)
 
 def topic_signatures(data):
-    '''
-    Extracts a bunch of topic signatures from a dictionary of the form
+    '''Extracts a bunch of topic signatures from a list.
 
     Args:
-        Data -- [ (topic1, relevant_words), (topic2, relevant_words2)... ]
+        Data -- [ (topic1, [w1, w2, w3]), (topic2, [w1, w2, w3])... ]
 
     Returns:
         {topic1: signature1, topic2: signature2...}
@@ -92,12 +91,15 @@ def topic_signatures(data):
         signatures[topic] = term_weights(words, allwords.elements())
         allwords.update(relevant) # this is the slowest part of my code
 
-        topwords = relevant.most_common(10)
-        print 'extracting topic signature for \'%s\'' % topic
-        for i, (t,w) in enumerate(signatures[topic][:10]):
-            s = '%20s %8f\t\t %s %d' % (t,w, topwords[i][0], topwords[i][1])
-            print s.encode('utf-8')
-        print '=' * 55
+        def print_topic():
+            topwords = relevant.most_common(10)
+            print 'extracting topic signature for \'%s\'' % topic
+            for i, (t,w) in enumerate(signatures[topic][:10]):
+                s = '%20s %8f\t\t %s %d' % (t,w, topwords[i][0], topwords[i][1])
+                print s.encode('utf-8')
+            print '=' * 55
+
+        print_topic()
 
     return signatures
 
